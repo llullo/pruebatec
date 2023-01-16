@@ -22,6 +22,7 @@ namespace prueba.Controllers
         }
 
         [HttpGet("GetElements")]
+        //aquí no comprobamos que el elemento haya o no acabado dado que esta llamada es simplemente para poder depurar bien
         public async Task<ActionResult> GetElements()
         {
             try
