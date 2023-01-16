@@ -1,26 +1,40 @@
-﻿using Entities.Models;
+﻿using AutoMapper;
+using Entities.Models;
+using prueba.Models;
 using prueba.Repositories;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace prueba.Services
 {
     public class QueueService : IQueueService
     {
         private readonly IQueueRepository _QueueRepository;
+        private readonly IMapper _mapper;
 
-        public QueueService(IQueueRepository queueRepository)
+
+        public QueueService(IQueueRepository queueRepository, IMapper mapper)
         {
             _QueueRepository = queueRepository;
+            _mapper= mapper;
         }
 
-        public IEnumerable<Queue> GetQueueById(int id)
+        public QueueDTO GetQueueById(int id)
         {
-            return _QueueRepository.FindByCondition(x => x.Id== id); 
+            var queue = _mapper.Map<QueueDTO>(_QueueRepository.FindByCondition(x => x.Id== id).FirstOrDefault());
+            return queue;
         }
 
-        public IEnumerable<Queue> GetQueues()
+        public List<QueueDTO> GetQueues()
         {
-            throw new System.NotImplementedException();
+            var queues = _QueueRepository.FindAll();
+            List<QueueDTO> qList = new List<QueueDTO>();
+            foreach (var q in queues)
+            {
+                var qDTO = _mapper.Map<QueueDTO>(q);
+                qList.Add(qDTO);
+            }
+            return qList;
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using Entities.Models;
+using prueba.Models;
 using System.Collections.Generic;
 
 namespace prueba.Services
 {
     public interface IQueueService
     {
-        IEnumerable<Queue> GetQueueById(int id);
-        IEnumerable<Queue> GetQueues();
+        QueueDTO GetQueueById(int id);
+        List<QueueDTO> GetQueues();
     }
 }

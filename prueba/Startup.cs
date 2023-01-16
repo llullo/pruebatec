@@ -25,6 +25,7 @@ namespace prueba
         {
             services.AddControllers();
             services.AddScoped<IQueueService, QueueService>();
+            services.AddScoped<IElementService, ElementService>();
             services.AddScoped<IElementRepository, ElementRepository>();
             services.AddScoped<IQueueRepository, QueueRepository>();
             // Auto Mapper Configurations

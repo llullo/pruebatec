@@ -9,8 +9,8 @@ namespace prueba
     {
         public MappingProfile()
         {
-            
-            CreateMap<Queue, QueueDTO>().ForMember(dest => dest.Elements,opt => opt.Ignore());
+
+            CreateMap<Queue, QueueDTO>();
             CreateMap<QueueDTO, Queue>();
 
             CreateMap<Element, ElementDTO>();
